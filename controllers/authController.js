@@ -1,42 +1,43 @@
 const supabase = require("../lib/supabase");
 
-// const { insertNewUser, stopListening } = require("../db/newUserTrigger");
-
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
-  let { error, user } = await supabase.auth.signUp({
+  let { error, data: user } = await supabase.auth.signUp({
     email: req.body.email,
     password: req.body.password,
   });
-
-  console.log(user);
 
   if (error) {
     res.status(400).send({ error });
   } else {
     try {
-      // const { user_metadata } = user;
-      // const { email } = user_metadata;
+      const email = user?.user.email;
+      const id = user?.user.id;
+      const phone_number = user?.user.phone;
 
-      // const { data, error: insertError } = await supabase
-      //   .from("users")
-      //   .insert([
-      //     {
-      //       id: user.id,
-      //       email: email,
-      //       first_name,
-      //       // last_name,
-      //       // phone_number,
-      //       // other fields can be null and updated later
-      //     },
-      //   ])
-      //   .single();
+      const { error: insertError } = await supabase
+        .from("users")
+        .insert([
+          {
+            id: id,
+            email: email,
+            first_name: "",
+            last_name: "",
+            phone_number: phone_number,
+            country: "",
+            city: "",
+            zip_code: "",
+            address_1: "",
+            address_2: "",
+          },
+        ])
+        .select();
 
-      // if (insertError) {
-      //   throw insertError;
-      // }
+      if (insertError) {
+        res.send({ insertError });
+      }
 
-      res.status(200).send({ user });
+      res.status(200).send({ user: user });
     } catch (err) {
       next(err);
     }
@@ -45,9 +46,7 @@ const register = async (req, res, next) => {
 
 // ------------------------------- email and password sign in
 const login = async (req, res, next) => {
-  // console.log(req.body);
-
-  let { user, error } = await supabase.auth.signInWithPassword({
+  let { data, error } = await supabase.auth.signInWithPassword({
     email: req.body.email,
     password: req.body.password,
   });
@@ -55,7 +54,7 @@ const login = async (req, res, next) => {
   if (error) {
     res.status(400).send({ error });
   } else {
-    res.status(200).send({ user });
+    res.status(200).send({ data });
   }
 };
 
