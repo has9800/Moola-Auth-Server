@@ -1,4 +1,27 @@
 const supabase = require("../lib/supabase");
+const Evervault = require("@evervault/sdk");
+const evervault = new Evervault(
+  process.env.EVERVAULT_APP_ID,
+  process.env.EVERVAULT_API_KEY
+);
+
+const testEncryption = async (req, res) => {
+  const encrypted = await evervault.encrypt({
+    card_number: req.body.card_number,
+    expiry_date: req.body.expiry_date,
+    cvv: req.body.cvv,
+    cardholder_name: req.body.cardholder_name,
+    zip_code: req.body.zip_code,
+  });
+
+  // Decrypt the encrypted data
+  const decrypted = await evervault.decrypt(encrypted);
+
+  res.status(200).send({
+    encrypted,
+    decrypted,
+  });
+};
 
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
@@ -69,4 +92,4 @@ const signout = async (req, res) => {
   }
 };
 
-module.exports = { login, register, signout };
+module.exports = { login, register, signout, testEncryption };
