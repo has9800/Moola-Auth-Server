@@ -60,14 +60,12 @@ const login = async (req, res, next) => {
 
 // ------------------------------- signout
 const signout = async (req, res) => {
-  stopListening();
-
   let { error } = await supabase.auth.signOut();
 
   if (error) {
     res.status(400).send({ error });
   } else {
-    res.status(200).send();
+    res.status(200).send("Signed out successfully");
   }
 };
 
