@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+message Card {
+    string id = 1;
+    string card_number = 2;
+    string card_cvv = 3;
+    string card_expiry = 4;
+    string card_holder_full_name = 5;
+    string card_holder_zip_code = 6;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+message User {
+    string id = 1;
+    string email = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string phone_number = 5;
+    string country = 6;
+    string city = 7;
+    string zip_code = 8;
+    string address_1 = 9;
+    string address_2 = 10;
+}
+
+message UserSignup {
+    string id = 1;
+    string email = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string phone_number = 5;
+    string country = 6;
+    string city = 7;
+    string zip_code = 8;
+    string address_1 = 9;
+    string address_2 = 10;
+}
+
+message UserSignin {
+    string email = 1;
+    string password = 2;
+}
