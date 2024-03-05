@@ -20,7 +20,7 @@ This is the backend server for Moola Inc. The file structure is as follows:
 ------ users.proto
 ------ card_pb
 ------ users_pb
-- Server.js
+- Server.js (entry)
 ```
 
 ### Overview
