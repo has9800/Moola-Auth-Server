@@ -2,7 +2,7 @@ const express = require("express");
 const {
   sendPayment,
   cancelPayment,
-} = require("../controllers/walletsController");
+} = require("../controllers/paymentsController");
 
 const router = express.Router();
 
