@@ -1,4 +1,4 @@
-const supabase = require("../lib/supabase");
+const supabase = require("../utils/supabase");
 
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
