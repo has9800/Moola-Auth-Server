@@ -50,7 +50,7 @@ The server takes requests from the mobile app UI and provides the backend functi
 - **Supabase JS SDK** for authentication, file storage, Postgres database
 - **Morgan** for server logs
 - **Redis** cache for storing logs on Upstash
-- **Evervault** for encryption/decryption (client, inbound, outbound)
+- **Evervault** for encryption/decryption (proxy server for inbound and outbound requests)
 - **gRPC client** for request handling serialized protocol buffers for faster server requests [In Progress...]
 - **Render** for deploying the server, scaling, and privatization
 
