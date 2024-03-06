@@ -1,4 +1,7 @@
 const supabase = require("../utils/supabase");
+const evervault = require("../utils/evervault");
+
+evervault.enableOutboundRelay();
 
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
