@@ -10,6 +10,8 @@ const testEndpoint = async (req, res) => {
 };
 
 const testOutboundRelay = async (req, res) => {
+  console.log(req.body)
+  
   return await axios
     .post("https://ena5ji41racy.x.pipedream.net", {
       email: req.body.email,
