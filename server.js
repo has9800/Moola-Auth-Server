@@ -21,7 +21,7 @@ const stream = {
   write: async (message) => {
     try {
       // Delete the key if it exists
-      await redis.del("server-log");
+      // await redis.del("server-log");
 
       // Use LPUSH to add the log message to the beginning of the list
       await redis.lpush("server-log", message);
