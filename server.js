@@ -19,7 +19,10 @@ app.use(bodyParser.json());
 // server logging
 const stream = {
   write: (message) => {
-    redis.set("server-log", message);
+    redis.lpush("server-log", message, function (err) {
+      if (err) throw err;
+      redis.ltrim("server-log", 0, 4999);
+    });
   },
 };
 
