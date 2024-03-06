@@ -6,19 +6,14 @@ evervault.enableOutboundRelay();
 const testEndpoint = async (req, res) => {
   const body = req.body;
 
-  // const encryptedBody = await evervault.encrypt(body);
-
   return res.status(200).send(body);
 };
 
 const testOutboundRelay = async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  await axios
+  return await axios
     .post("https://ena5ji41racy.x.pipedream.net", {
-      email: email,
-      password: password,
+      email: req.body.email,
+      password: req.body.password,
     })
     .then((response) => {
       res.status(200).send("Sent to Request Bin");
