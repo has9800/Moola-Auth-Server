@@ -27,7 +27,7 @@ const stream = {
       await redis.lpush("server-log", message);
 
       // Use LTRIM to limit the list to the most recent 5000 log messages
-      await redis.ltrim("server-log", 0, 4999);
+      // await redis.ltrim("server-log", 0, 4999);
     } catch (err) {
       console.error(err);
     }
