@@ -1,5 +1,5 @@
 const evervault = require("../utils/evervault");
-const axios = require("axios");
+const axios = require("axios").default;
 
 evervault.enableOutboundRelay();
 
