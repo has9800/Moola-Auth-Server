@@ -1,6 +1,6 @@
 const evervault = require("../utils/evervault");
 
-evervault.enableOutboundRelay();
+// evervault.enableOutboundRelay();
 
 const testEndpoint = async (req, res) => {
   const body = req.body;

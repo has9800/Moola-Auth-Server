@@ -3,8 +3,6 @@ const evervault = require("../utils/evervault");
 
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
-  console.log(req.body)
-  
   let { error, data: user } = await supabase.auth.signUp({
     email: await evervault.decrypt(req.body.email),
     password: await evervault.decrypt(req.body.password),
@@ -49,17 +47,16 @@ const register = async (req, res, next) => {
 
 // ------------------------------- email and password sign in
 const login = async (req, res, next) => {
-  console.log(req.body);
-  // let { data, error } = await supabase.auth.signInWithPassword({
-  //   email: req.body.email,
-  //   password: req.body.password,
-  // });
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: req.body.email,
+    password: req.body.password,
+  });
 
-  // if (error) {
-  //   res.status(400).send({ error });
-  // } else {
-  //   res.status(200).send({ data });
-  // }
+  if (error) {
+    res.status(400).send({ error });
+  } else {
+    res.status(200).send({ data });
+  }
 };
 
 // ------------------------------- signout
