@@ -18,14 +18,19 @@ app.use(bodyParser.json());
 
 // server logging
 const stream = {
-  write: (message) => {
-    redis.del("server-log", function (err) {
-      if (err) throw err;
-      redis.lpush("server-log", message, function (err) {
-        if (err) throw err;
-        redis.ltrim("server-log", 0, 4999);
-      });
-    });
+  write: async (message) => {
+    try {
+      // Delete the key if it exists
+      await redis.del("server-log");
+
+      // Use LPUSH to add the log message to the beginning of the list
+      await redis.lpush("server-log", message);
+
+      // Use LTRIM to limit the list to the most recent 5000 log messages
+      await redis.ltrim("server-log", 0, 4999);
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 
