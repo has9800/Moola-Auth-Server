@@ -1,13 +1,13 @@
 const supabase = require("../utils/supabase");
 const evervault = require("../utils/evervault");
 
-evervault.enableOutboundRelay();
-
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
+  console.log(req.body)
+  
   let { error, data: user } = await supabase.auth.signUp({
-    email: req.body.email,
-    password: req.body.password,
+    email: await evervault.decrypt(req.body.email),
+    password: await evervault.decrypt(req.body.password),
   });
 
   if (error) {
