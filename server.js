@@ -19,9 +19,12 @@ app.use(bodyParser.json());
 // server logging
 const stream = {
   write: (message) => {
-    redis.lpush("server-log", message, function (err) {
+    redis.del("server-log", function (err) {
       if (err) throw err;
-      redis.ltrim("server-log", 0, 4999);
+      redis.lpush("server-log", message, function (err) {
+        if (err) throw err;
+        redis.ltrim("server-log", 0, 4999);
+      });
     });
   },
 };
