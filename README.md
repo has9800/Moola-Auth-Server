@@ -1,6 +1,11 @@
 # Moola Authentication Server
 This is the backend server for Moola Inc.
 
+Server API endpoint urls:
+- Moola Inc backend (without encryption proxy): https://moola-auth-server.onrender.com
+- Moola Inc backend (with encryption proxy): https://moola-auth-server-onrender-com.relay.evervault.com
+
+
 Server endpoints and their required parameters in json:
 ```bash
 /auth
