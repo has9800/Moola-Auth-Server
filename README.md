@@ -1,6 +1,29 @@
 # Moola Authentication Server
+This is the backend server for Moola Inc.
 
-This is the backend server for Moola Inc. The file structure is as follows:
+Server endpoints and their required parameters in json:
+```bash
+/auth
+----- /signup            ...POST...{email, password}
+----- /login             ...POST...{email, password}
+----- /signout           ...POST...{no params}
+
+/wallets
+------ /add-card         ...POST...{user_id, card_number, cvv, expiry, f_name, zip_code}
+------ /replace-card     ...POST...{user_id, card_id}
+------ /get-card(s)      ...POST...{user_id, and card_id if /get-card}
+------ /delete-card      ...POST...{user_id, card_id}
+
+/payments
+------ /send             ...POST...{message, amount}
+------ /cancel           ...POST...{in progress do not call}
+
+/endpoint
+------- /test            ...POST...{message, user}
+------ /outbound-relay   ...POST...{message, user}
+```
+
+The file structure is as follows:
 
 ```bash
 - Controllers
