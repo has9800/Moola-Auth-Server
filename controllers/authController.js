@@ -21,10 +21,10 @@ const register = async (req, res, next) => {
         .insert([
           {
             id: id,
-            email: email,
+            email: await evervault.encrypt(email),
             first_name: "",
             last_name: "",
-            phone_number: phone_number,
+            phone_number: "",
             country: "",
             city: "",
             zip_code: "",
