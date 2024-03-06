@@ -25,7 +25,7 @@ Server endpoints and their required parameters in json:
 
 /endpoint
 ------- /test            ...POST...{message, user}
------- /outbound-relay   ...POST...{message, user}
+------ /outbound-relay   ...POST...{email, password}
 ```
 
 The file structure is as follows:
