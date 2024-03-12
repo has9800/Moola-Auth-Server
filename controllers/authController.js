@@ -21,7 +21,7 @@ const register = async (req, res, next) => {
         .insert([
           {
             id: id,
-            email: await evervault.encrypt(email),
+            email: email,
             first_name: "",
             last_name: "",
             phone_number: "",
@@ -48,8 +48,8 @@ const register = async (req, res, next) => {
 // ------------------------------- email and password sign in
 const login = async (req, res, next) => {
   let { data, error } = await supabase.auth.signInWithPassword({
-    email: req.body.email,
-    password: req.body.password,
+    email: await evervault.decrypt(req.body.email),
+    password: await evervault.decrypt(req.body.password),
   });
 
   if (error) {

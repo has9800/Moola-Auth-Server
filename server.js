@@ -12,25 +12,14 @@ const walletRoutes = require("./routes/wallets");
 const paymentsRoutes = require("./routes/payments");
 const endpointTestRoute = require("./routes/endpointHealth");
 
-// parsing midd
+// parsing middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // server logging
 const stream = {
   write: async (message) => {
-    try {
-      // Delete the key if it exists
-      // await redis.del("server-log");
-
-      // Use LPUSH to add the log message to the beginning of the list
-      await redis.lpush("server-log", message);
-
-      // Use LTRIM to limit the list to the most recent 5000 log messages
-      // await redis.ltrim("server-log", 0, 4999);
-    } catch (err) {
-      console.error(err);
-    }
+    await redis.lpush("server-logs", message);
   },
 };
 

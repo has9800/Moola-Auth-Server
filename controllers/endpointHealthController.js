@@ -17,8 +17,8 @@ const testOutboundRelay = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     })
-    .then((response) => {
-      res.status(200).send("Sent to Request Bin");
+    .then(() => {
+      res.status(200).send("Sent to 3rd party");
     })
     .catch((error) => {
       console.error(error);

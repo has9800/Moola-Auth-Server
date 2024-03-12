@@ -15,7 +15,7 @@ const addCard = async (req, res) => {
     .from("wallets")
     .insert([
       {
-        id: req.body.id,
+        card_holder_id: req.body.id,
         card_number: req.body.card_number,
         card_cvv: req.body.card_cvv,
         card_expiry: req.body.card_expiry,
