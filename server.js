@@ -12,20 +12,14 @@ const walletRoutes = require("./routes/wallets");
 const paymentsRoutes = require("./routes/payments");
 const endpointTestRoute = require("./routes/endpointHealth");
 
-// parsing midd
+// parsing middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // server logging
 const stream = {
-  write: (message) => {
-    redis.del("server-log", function (err) {
-      if (err) throw err;
-      redis.lpush("server-log", message, function (err) {
-        if (err) throw err;
-        redis.ltrim("server-log", 0, 4999);
-      });
-    });
+  write: async (message) => {
+    await redis.lpush("server-logs", message);
   },
 };
 

@@ -12,11 +12,11 @@ const testEndpoint = async (req, res) => {
 const testOutboundRelay = async (req, res) => {
   return await axios
     .post("https://ena5ji41racy.x.pipedream.net", {
-      email: req.body.email,
-      password: req.body.password,
+      email: await evervault.encrypt(req.body.email),
+      password: await evervault.encrypt(req.body.password),
     })
-    .then((response) => {
-      res.status(200).send("Sent to Request Bin");
+    .then(() => {
+      res.status(200).send("Sent to 3rd party");
     })
     .catch((error) => {
       console.error(error);
