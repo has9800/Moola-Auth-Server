@@ -10,10 +10,12 @@ const testEndpoint = async (req, res) => {
 };
 
 const testOutboundRelay = async (req, res) => {
+  console.log(req.body)
+  
   return await axios
-    .post("https://ena5ji41racy.x.pipedream.net", {
-      email: await evervault.encrypt(req.body.email),
-      password: await evervault.encrypt(req.body.password),
+    .post("https://eotrci0c7bk0uat.m.pipedream.net", {
+      email: req.body.email,
+      password: req.body.password,
     })
     .then(() => {
       res.status(200).send("Sent to 3rd party");
