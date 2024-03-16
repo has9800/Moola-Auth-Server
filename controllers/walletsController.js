@@ -23,7 +23,7 @@ const addCard = async (req, res) => {
         card_holder_zip_code: req.body.card_holder_zip_code,
       },
     ])
-    .select();
+    .single();
 
   if (error) {
     res.status(400).send({ error });
