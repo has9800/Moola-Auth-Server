@@ -1,6 +1,8 @@
 const supabase = require("../utils/supabase");
 const evervault = require("../utils/evervault");
 
+// When a user wants to replace card, call the remove-card route, then add a new card
+
 const getCard = async (req, res) => {
   let { data: card, error } = await supabase
     .from("wallets")
@@ -58,14 +60,6 @@ const addCard = async (req, res) => {
   }
 };
 
-const replaceCard = async (req, res) => {
-  const { data, error } = await supabase
-    .from("wallets")
-    .update({ someValue: "otherValue" })
-    .eq("card_id", req.body.card_id)
-    .single();
-};
-
 const removeCard = async (req, res) => {
   const { error } = await supabase
     .from("wallets")
@@ -79,4 +73,4 @@ const removeCard = async (req, res) => {
   }
 };
 
-module.exports = { addCard, removeCard, getCard, getCards, replaceCard };
+module.exports = { addCard, removeCard, getCard, getCards };
