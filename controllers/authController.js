@@ -5,8 +5,12 @@ evervault.enableOutboundRelay();
 
 // ------------------------------- email and password sign up
 const register = async (req, res, next) => {
+  console.log(req.body);
+
   const decrypted_email = await evervault.decrypt(req.body.email);
   const decrypted_password = await evervault.decrypt(req.body.password);
+
+  console.log(decrypted_email, decrypted_password);
 
   let { error, data: user } = await supabase.auth.signUp({
     email: decrypted_email,
