@@ -34,7 +34,7 @@ const deleteContact = async (req, res) => {
   const { error } = await supabase
     .from("contacts")
     .delete()
-    .eq("some_column", "someValue");
+    .eq("id", req.body.id);
 };
 
 module.exports = { addContact, updateContact, deleteContact };

@@ -1,7 +1,6 @@
-AUTH, INBOUND/OUTBOUND ENCRYPTION/DECRYPTION NOT WORKING ANYMORE --- DONE
+---
 
-Want to work on adding cards, getting cards, replacing cards, and deleting cards. --- DONE
+When a user is on the app, need to fetch all their data.
+Should i use redis to cache instead of fetching constantly?
 
-Then on contacts.
-
-Then on profile page functionality.
+I also need to transfer over their details to the payment controller to send over to third party
