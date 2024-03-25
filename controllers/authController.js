@@ -66,7 +66,7 @@ const login = async (req, res, next) => {
   }
 };
 
-// ------------------------------- signout
+// ------------------------------- signout  
 const signout = async (req, res) => {
   let { error } = await supabase.auth.signOut();
 
