@@ -1,12 +1,15 @@
 const supabase = require("../utils/supabase");
+const { getCurrentUser } = require("../utils/authHelpers");
 const evervault = require("../utils/evervault");
 
 const addContact = async (req, res) => {
+  const user = await getCurrentUser();
+
   const { data, error } = await supabase
     .from("contacts")
     .insert([
       {
-        owner_id: req.body.owner_id,
+        owner_id: user.id,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         phone_number: req.body.phone_number,

@@ -31,6 +31,36 @@ const pre_authorize_payment = (req) => {
   return PRE_AUTHORIZE;
 };
 
+const credit_account_helper = async (req) => {
+  const CREDIT_ACCOUNT = {
+    schemaVersion: "1.0",
+    requestId: "1111",
+    timestamp: "client_timestamp",
+    channelName: "WEB",
+    serviceName: "API_CREDITACCOUNT",
+    serviceParams: {
+      merchantUid: "M0912269",
+      apiUserId: "1000297",
+      apiKey: "API-1901083745AHX",
+      paymentMethod: "MWALLET_ACCOUNT",
+      payerInfo: {
+        accountNo: "252615414470",
+        accountType: "MERCHANT",
+        accountHolder: req.body.full_name,
+      },
+      transactionInfo: {
+        referenceId: "111111",
+        invoiceId: "22222",
+        amount: req.body.amount,
+        currency: "USD",
+        description: req.body.message,
+      },
+    },
+  };
+
+  return CREDIT_ACCOUNT;
+};
+
 // commit a payment
 const commit_payment = async (transaction_id, transaction_amount) => {
   const COMMIT = {
@@ -62,4 +92,8 @@ const commit_payment = async (transaction_id, transaction_amount) => {
   }
 };
 
-module.exports = { pre_authorize_payment, commit_payment };
+module.exports = {
+  pre_authorize_payment,
+  commit_payment,
+  credit_account_helper,
+};

@@ -19,13 +19,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // server logging
-const stream = {
-  write: async (message) => {
-    await redis.lpush("server-logs", message);
-  },
-};
+// const stream = {
+//   write: async (message) => {
+//     await redis.lpush("server-logs", message);
+//   },
+// };
 
-app.use(morgan("combined", { stream }));
+// app.use(morgan("combined", { stream }));
 
 // routes
 app.use("/auth", authRoutes);

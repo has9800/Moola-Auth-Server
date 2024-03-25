@@ -1,5 +1,6 @@
 const supabase = require("../utils/supabase");
 const evervault = require("../utils/evervault");
+const { getCurrentUser } = require("../utils/authHelpers");
 
 // When a user wants to replace card, call the remove-card route, then add a new card
 
@@ -19,10 +20,12 @@ const getCard = async (req, res) => {
 };
 
 const getCards = async (req, res) => {
+  const user = await getCurrentUser();
+
   let { data: cards, error } = await supabase
     .from("wallets")
     .select("*")
-    .eq("cardholder_id", req.body.cardholder_id)
+    .eq("cardholder_id", user.id)
     .range(0, 9);
 
   const decryptedCards = await evervault.decrypt(cards);
@@ -35,11 +38,13 @@ const getCards = async (req, res) => {
 };
 
 const addCard = async (req, res) => {
+  const user = await getCurrentUser();
+
   const { data, error } = await supabase
     .from("wallets")
     .insert([
       {
-        cardholder_id: req.body.cardholder_id,
+        cardholder_id: user.id,
         card_number: await evervault.encrypt(req.body.card_number),
         card_cvv: await evervault.encrypt(req.body.card_cvv),
         card_expiry: await evervault.encrypt(req.body.card_expiry),
