@@ -11,7 +11,7 @@ const aggregateUser = async (req, res) => {
   let { data: cards, error: cardsError } = await supabase
     .from("wallets")
     .select("*")
-    .eq("cardholder_id", user.id)
+    .eq("cardholder_id", user?.id)
     .range(0, 9);
 
   const decryptedCards = await evervault.decrypt(cards);
@@ -20,14 +20,14 @@ const aggregateUser = async (req, res) => {
   let { data: contacts, error: contactsError } = await supabase
     .from("contacts")
     .select("*")
-    .eq("owner_id", user.id)
+    .eq("owner_id", user?.id)
     .range(0, 9);
 
   // get their transactions
   let { data: transactions, error: transactionsError } = await supabase
     .from("transactions")
     .select("*")
-    .eq("owner_id", user.id);
+    .eq("owner_id", user?.id);
 
   if (!cardsError || !contactsError || !transactionsError) {
     res.status(200).send({
