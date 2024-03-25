@@ -20,7 +20,7 @@ Server endpoints and their required parameters in json:
 ------ /delete-card      ...POST...{user_id, card_id}
 
 /payments
------- /send             ...POST...{message, amount}
+------ /send             ...POST...{message, amount, receiver_first_name, receiver_last_name, number}
 ------ /cancel           ...POST...{in progress do not call}
 
 /endpoint
