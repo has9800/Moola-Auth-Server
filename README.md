@@ -19,8 +19,13 @@ Server endpoints and their required parameters in json:
 ------ /get-card(s)      ...POST...{user_id, and card_id if /get-card}
 ------ /delete-card      ...POST...{user_id, card_id}
 
+/contacts
+------ /add-contact      ...POST...{first_name, last_name, phone_number, city, owner_id}
+------ /update-contact   ...POST...{whatever this is to update}
+------ /delete-contact   ...POST...{contact id}
+
 /payments
------- /send             ...POST...{message, amount}
+------ /send             ...POST...{message, amount, receiver_first_name, receiver_last_name, number}
 ------ /cancel           ...POST...{in progress do not call}
 
 /endpoint
