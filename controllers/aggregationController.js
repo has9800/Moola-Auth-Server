@@ -5,7 +5,7 @@ const { getCurrentUser } = require("../utils/authHelpers");
 const aggregateUser = async (req, res) => {
   const user = await getCurrentUser();
 
-  if (!user) res.status(200).send(null);
+  if (!user) res.status(200).send("No user found");
 
   // get their cards
   let { data: cards, error: cardsError } = await supabase
